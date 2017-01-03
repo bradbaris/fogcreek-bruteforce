@@ -22,11 +22,18 @@
 /*
   Solution: Brute-Force Method
 
-  Since the main factor in the hashing function is `letters.indexOf(string[i])`, we know that the indexOf each char is roughly equal to its value. This means that `aaaaaaaaa` and `wwwwwwwww` are the bounds. However, 16^9 comes out to a total 68719476736 combinations, which is unfeasible to brute-force. 
+  Since the main factor in the hashing function is `letters.indexOf(string[i])`, we know that the indexOf each char is 
+  roughly equal to its value. This means that `aaaaaaaaa` and `wwwwwwwww` are the bounds. However, 16^9 comes out to a 
+  total 68719476736 combinations, which is unfeasible to brute-force. 
 
-  With some kludging around, one can find that the answer has to be between `paaaaaaaa` and `pwwwwwwww` as these hash into 944856973104749 and 946320506210549 respectively, containing the answer 945924806726376 somewhere in-between. When brute-forcing, one must try to reduce the search space as much as possible beforehand.
+  With some kludging around, one can find that the answer has to be between `paaaaaaaa` and `pwwwwwwww` as these hash 
+  into 944856973104749 and 946320506210549 respectively, containing the answer 945924806726376 somewhere in-between. 
+  When brute-forcing, one must try to reduce the search space as much as possible beforehand.
 
-  To start, we know the first letter is `p`. To find the second letter, we need to append a letter from `acdegilmnoprstuw` and pad the rest of the 9-letter word with `w` (since we can't test upwards from `paaaaaaaa`, but we can reduce down from `pwwwwwwww`). So `pawwwwwww` would be the first test case. From there, it is a matter of iteration, sharpening each guess by whether it is +/- from the answer hash until we deduce our way to the answer.
+  To start, we know the first letter is `p`. To find the second letter, we need to append a letter from `acdegilmnoprstuw` 
+  and pad the rest of the 9-letter word with `w` (since we can't test upwards from `paaaaaaaa`, but we can reduce down 
+  from `pwwwwwwww`). So `pawwwwwww` would be the first test case. From there, it is a matter of iteration, sharpening each
+  guess by whether it is +/- from the answer hash until we deduce our way to the answer.
 */
 
 var currentGuess = "p";
